@@ -6,7 +6,7 @@
   "description": "server for orgello",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon src/index"
+    "start": "node src/index.js"
   },
   "dependencies": {
     "bcrypt": "^3.0.5",
@@ -33,7 +33,6 @@
     "prettier": "^1.17.0"
   },
   "engines": {
-    "node": "11.x.x",
-    "npm": "6.4.x"
+    "node": "11.x.x"
   }
 }
