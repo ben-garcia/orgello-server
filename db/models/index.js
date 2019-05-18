@@ -11,10 +11,6 @@ const db = {};
 
 let sequelize;
 if (process.env.DATABASE_URL) {
-  console.log('---------------------------');
-  console.log(process.env.DATABASE_URL);
-  console.log(typeof process.env.DATABASE_URL);
-  console.log('---------------------------');
   sequelize = new Sequelize(process.env.DATABASE_URL);
 } else {
   sequelize = new Sequelize(
