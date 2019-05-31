@@ -70,4 +70,23 @@ router.get('/search', validateQueryParams, (req, res) => {
     .catch((e) => console.log('/search error: ', e.message));
 });
 
+// endpoint that triggers a download
+// FROM UNSPLASH API GUIDELINES
+// 'you must send a request to the download endpoint returned
+// under the photo.links.download_location  property'.
+router.get('/download', (req, res) => {
+  const { id } = req.query;
+
+  unsplash.photos
+    .getPhoto(id)
+    .then(toJson)
+    .then((photo) => {
+      // trigger the download
+      unsplash.photos.downloadPhoto(photo);
+      // repond with 200 status code
+      res.status(200).json({ success: 'Download Triggered' });
+    })
+    .catch((e) => console.log('/download error: ', e.message));
+});
+
 module.exports = router;
