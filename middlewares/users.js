@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 // check and make sure that the :userId and :boardId params are numbers
 // if not return an error
-function validateParam(req, res, next) {
+function validateParam(req, _, next) {
   if (isNaN(req.params.userId || isNaN(req.params.boardId))) {
     next({ message: 'id must be a number' });
   } else {
@@ -12,7 +12,7 @@ function validateParam(req, res, next) {
 
 // check the header of the request for the 'Authorization' header
 // that contains the users token.
-function isTokenPresent(req, res, next) {
+function isTokenPresent(req, _, next) {
   const authorizationToken = req.get('Authorization');
 
   if (authorizationToken) {
@@ -35,6 +35,11 @@ function verifyToken(req, res, next) {
     if (err) {
       res.status(403);
       next({ message: err.message });
+    } else if (user.username === 'orgelloguest' && req.method !== 'GET') {
+      // if the user is using the test account
+      // stop the request from reaching the endpoint
+      res.status(403);
+      next({ message: 'Cannot Create/Update resource from a test account' });
     } else {
       req.user = user;
       // check that the :id param matches the user id
