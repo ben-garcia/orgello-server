@@ -35,7 +35,7 @@ function verifyToken(req, res, next) {
     if (err) {
       res.status(403);
       next({ message: err.message });
-    } else if (user.username === 'orgelloguest2' && req.method !== 'GET') {
+    } else if (user.username === 'orgelloguest' && req.method !== 'GET') {
       // if the user is using the test account
       // stop the request from reaching the endpoint
       res.status(403);
