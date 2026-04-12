@@ -6,8 +6,9 @@
   "description": "server for orgello",
   "license": "MIT",
   "scripts": {
-    "start": "node src/index.js",
-    "migrate": "sequelize db:migrate"
+    "migrate": "sequelize-cli db:migrate",
+    "start": "nodemon src/index",
+    "status": "sequelize-cli db:migrate:status"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
@@ -17,10 +18,10 @@
     "express": "^4.20.0",
     "joi": "^14.3.1",
     "jsonwebtoken": "^9.0.0",
-    "node-fetch": "2.6.7",
-    "pg": "^8.9.0",
-    "sequelize": "^6.37.8",
-    "sequelize-cli": "^5.4.0",
+    "node-fetch": "^2.6.7",
+    "pg": "^8.20.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^5.3.0",
     "unsplash-js": "^5.0.0",
     "volleyball": "^1.5.1"
   },
@@ -31,9 +32,7 @@
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-prettier": "^3.0.1",
     "nodemon": "^1.18.10",
-    "prettier": "^1.17.0"
-  },
-  "engines": {
-    "node": "16.x"
+    "prettier": "^1.17.0",
+    "sequelize-cli": "^5.4.0"
   }
 }

@@ -2,7 +2,6 @@ const express = require('express');
 const Joi = require('joi');
 
 const router = express.Router();
-
 const Board = require('../db/models').board;
 const List = require('../db/models').list;
 const Card = require('../db/models').card;
@@ -45,7 +44,7 @@ router.get(
       order: [['updatedAt', 'DESC']],
     })
       .then((boards) => {
-        res.json(boards);
+        res.status(200).json(boards);
       })
       .catch((e) => next({ message: e.message }));
   },

@@ -21,6 +21,10 @@ module.exports = {
           notEmpty: true,
         },
       },
+      archived: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
       listId: {
         allowNull: false,
         type: Sequelize.INTEGER,

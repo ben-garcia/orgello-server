@@ -10,7 +10,7 @@ const config = require('./../config/config.js')[env];
 const db = {};
 
 let sequelize;
-if (process.env.DATABASE_URL) {
+if (env === 'production') {
   sequelize = new Sequelize(process.env.DATABASE_URL);
 } else {
   sequelize = new Sequelize(
@@ -30,7 +30,10 @@ fs.readdirSync(__dirname) // read all files in the current directory
   )
   .forEach((file) => {
     // import the model from its individual file.
-    const model = sequelize.import(path.join(__dirname, file));
+    const model = require(path.join(__dirname, file))(
+      sequelize,
+      Sequelize.DataTypes,
+    );
     // add each model to the db object.
     db[model.name] = model;
   });
